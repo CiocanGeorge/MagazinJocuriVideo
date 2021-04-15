@@ -27,5 +27,6 @@ namespace MagazinJocuriVideo.Repository
             dbContext.AspNetUserRoles.InsertOnSubmit(rol);
             dbContext.SubmitChanges();
         }
+
     }
 }
