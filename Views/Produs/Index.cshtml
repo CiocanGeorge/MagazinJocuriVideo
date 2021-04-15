@@ -1,0 +1,51 @@
+﻿@model IEnumerable<MagazinJocuriVideo.Models.ProdusModels>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NumeProdus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descriere)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pret)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumeImagine)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumeProdus)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descriere)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pret)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumeImagine)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new {  id=item.CodProdusId  }) |
+            @Html.ActionLink("Details", "Details", new {  id=item.CodProdusId }) |
+            @Html.ActionLink("Delete", "Delete", new {  id=item.CodProdusId })
+        </td>
+    </tr>
+}
+
+</table>

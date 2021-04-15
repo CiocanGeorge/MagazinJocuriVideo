@@ -1,0 +1,58 @@
+﻿@model MagazinJocuriVideo.Models.ProdusModels
+
+@{
+    ViewBag.Title = "DetailsProdus";
+}
+
+<h2>DetailsProdus</h2>
+
+<div>
+    <h4>ProdusModels</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CodProdusId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CodProdusId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NumeProdus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumeProdus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descriere)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descriere)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pret)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pret)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NumeImagine)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumeImagine)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
