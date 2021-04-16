@@ -8,8 +8,10 @@ namespace MagazinJocuriVideo.Models
 {
     public class CosCumparaturiModels
     {
-        [Required(ErrorMessage = "Obligatoriu")]
         public int IdCos { get; set; }
+
+        [Required(ErrorMessage = "Obligatoriu")]
+        public int IdComanda { get; set; }
 
         [Required(ErrorMessage = "Obligatoriu")]
         public int CodProdusId { get; set; }

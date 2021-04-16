@@ -28,11 +28,40 @@ namespace MagazinJocuriVideo.Repository
             return cosCumparaturi;
         }
 
-
-
-        private CosCumparaturiModels MapDbObjectToModel(CosCumparaturi cos)
+        public void InserareCosCumparaturi(CosCumparaturiModels cos)
         {
-            throw new NotImplementedException();
+            dbContext.CosCumparaturis.InsertOnSubmit(MapModelToDbObject(cos));
+            dbContext.SubmitChanges();
+        }
+
+        private CosCumparaturi MapModelToDbObject(CosCumparaturiModels cos)
+        {
+            CosCumparaturi cosDb = new CosCumparaturi();
+            if (cos != null)
+            {
+                cosDb.IdCos = cos.IdCos;
+                cosDb.IdComanda = cos.IdComanda;
+                cosDb.CodProdusId = cos.CodProdusId;
+                cosDb.Cantitate = cos.Cantitate;
+                cosDb.Pret = cos.Pret;
+                return cosDb;
+            }
+            return null;
+        }
+
+        private CosCumparaturiModels MapDbObjectToModel(CosCumparaturi cosDb)
+        {
+            CosCumparaturiModels cos = new CosCumparaturiModels();
+            if(cosDb!=null)
+            {
+                cos.IdCos = cosDb.IdCos;
+                cos.IdComanda = cosDb.IdComanda;
+                cos.CodProdusId = cosDb.CodProdusId;
+                cos.Cantitate = cosDb.Cantitate;
+                cos.Pret = cosDb.Pret;
+                return cos;
+            }
+            return null;
         }
     }
 }

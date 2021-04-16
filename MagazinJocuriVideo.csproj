@@ -170,6 +170,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ClientController.cs" />
+    <Compile Include="Controllers\CosCumparaturiController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProdusController.cs" />
@@ -192,6 +193,7 @@
     <Compile Include="Repository\AspNetUserRepository.cs" />
     <Compile Include="Repository\ClientRepository.cs" />
     <Compile Include="Repository\CosCumparaturiRepository.cs" />
+    <Compile Include="Repository\FacturaRepository.cs" />
     <Compile Include="Repository\ProdusRepository.cs" />
     <Compile Include="Repository\RolsRepository.cs" />
     <Compile Include="Startup.cs" />
@@ -270,6 +272,7 @@
     <Content Include="Views\Client\EditClient.cshtml" />
     <Content Include="Views\Client\DeleteClient.cshtml" />
     <Content Include="Views\Client\DetailsClient.cshtml" />
+    <Content Include="Views\CosCumparaturi\CreateCosCumparaturi.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
