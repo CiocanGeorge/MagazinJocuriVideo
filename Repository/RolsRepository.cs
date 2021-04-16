@@ -27,6 +27,15 @@ namespace MagazinJocuriVideo.Repository
             dbContext.AspNetUserRoles.InsertOnSubmit(rol);
             dbContext.SubmitChanges();
         }
+        public void DeleteUserRol(Guid id)
+        {
+            AspNetUserRole userRol = dbContext.AspNetUserRoles.FirstOrDefault(x => x.UserId == id.ToString());
+            if(userRol!=null)
+            {
+                dbContext.AspNetUserRoles.DeleteOnSubmit(userRol);
+                dbContext.SubmitChanges();
+            }
+        }
 
     }
 }

@@ -43,6 +43,29 @@ namespace MagazinJocuriVideo.Repository
             dbContext.SubmitChanges();
         }
 
+        public void UpdateClient(ClientiModels client)
+        {
+            Clienti clientDb = dbContext.Clientis.FirstOrDefault(x => x.IdClient == client.IdClient);
+            if (clientDb != null)
+            {
+                clientDb.Name = client.Nume;
+                clientDb.Prenume = client.Prenume;
+                clientDb.Telefon = client.Telefon;
+                clientDb.Adresa = client.Adresa;
+                dbContext.SubmitChanges();
+            }
+        }
+
+        public void DeleteClient(Guid id)
+        {
+            Clienti clientDb = dbContext.Clientis.FirstOrDefault(x => x.IdClient == id);
+            if(clientDb!=null)
+            {
+                dbContext.Clientis.DeleteOnSubmit(clientDb);
+                dbContext.SubmitChanges();
+            }
+        }
+
         private Clienti MapModelToDbObject(ClientiModels client)
         {
             Clienti clientDb = new Clienti();

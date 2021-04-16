@@ -189,6 +189,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ProdusModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\AspNetUserRepository.cs" />
     <Compile Include="Repository\ClientRepository.cs" />
     <Compile Include="Repository\CosCumparaturiRepository.cs" />
     <Compile Include="Repository\ProdusRepository.cs" />
@@ -266,6 +267,9 @@
     <Content Include="Views\Produs\Index.cshtml" />
     <Content Include="Views\Client\CreateClient.cshtml" />
     <Content Include="Views\Client\Index.cshtml" />
+    <Content Include="Views\Client\EditClient.cshtml" />
+    <Content Include="Views\Client\DeleteClient.cshtml" />
+    <Content Include="Views\Client\DetailsClient.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -11,7 +11,8 @@ namespace MagazinJocuriVideo.Controllers
     public class ClientController : Controller
     {
         private ClientRepository clientRepository = new ClientRepository();
-        private RolsRepository rol = new RolsRepository();
+        private RolsRepository rolRepository = new RolsRepository();
+        private AspNetUserRepository userRepository = new AspNetUserRepository();
         // GET: Client
         public ActionResult Index()
         {
@@ -20,9 +21,10 @@ namespace MagazinJocuriVideo.Controllers
         }
 
         // GET: Client/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(Guid id)
         {
-            return View();
+            ClientiModels clientiModels = clientRepository.GetClient(id);
+            return View("DetailsClient",clientiModels);
         }
 
         // GET: Client/Create
@@ -43,7 +45,7 @@ namespace MagazinJocuriVideo.Controllers
                 string email = User.Identity.Name;
                 client.Email = email;
                 clientRepository.InserareClient(client, email);
-                rol.TakeRols(email);
+                rolRepository.TakeRols(email);
                 return RedirectToAction("Index");
             }
             catch
@@ -53,46 +55,55 @@ namespace MagazinJocuriVideo.Controllers
         }
 
         // GET: Client/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(Guid id)
         {
-            return View();
+            ClientiModels clientiModels = clientRepository.GetClient(id);
+            return View("EditClient", clientiModels) ;
         }
 
         // POST: Client/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(Guid id, FormCollection collection)
         {
             try
             {
-                // TODO: Add update logic here
+                ClientiModels clientiModels = new ClientiModels();
+                UpdateModel(clientiModels);
+                clientiModels.IdClient = id;
+
+                clientRepository.UpdateClient(clientiModels);
+                
 
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return View("EditClient");
             }
         }
 
         // GET: Client/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(Guid id)
         {
-            return View();
+            ClientiModels clientiModels = clientRepository.GetClient(id);
+            return View("DeleteClient",clientiModels);
         }
 
         // POST: Client/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(Guid id, FormCollection collection)
         {
             try
             {
-                // TODO: Add delete logic here
+                clientRepository.DeleteClient(id);
+                rolRepository.DeleteUserRol(id);
+                userRepository.DeleteUser(id);
 
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return View("DeleteClient");
             }
         }
     }
