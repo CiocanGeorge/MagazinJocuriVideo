@@ -45,7 +45,7 @@
                 @Html.ActionLink("Edit", "Edit", new { id = item.CodProdusId }) |
                 @Html.ActionLink("Details", "Details", new { id = item.CodProdusId }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.CodProdusId }) |
-                @Html.ActionLink("Adauga in Cos", "Create", "CosCumparaturi")
+                @Html.ActionLink("Adauga in Cos", "Create", "CosCumparaturi", new { id = item.CodProdusId },null)
             </td>
         </tr>
     }

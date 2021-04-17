@@ -10,6 +10,7 @@ namespace MagazinJocuriVideo.Repository
     public class CosCumparaturiRepository
     {
         private MagazinJocuriVideoDataContextDataContext dbContext;
+        private FacturaRepository facturaRepository = new FacturaRepository();
         public CosCumparaturiRepository()
         {
             dbContext = new MagazinJocuriVideoDataContextDataContext();
@@ -20,13 +21,23 @@ namespace MagazinJocuriVideo.Repository
         }
         public List<CosCumparaturiModels> GetAllCos()
         {
+            int id;
+            id = facturaRepository.UltimaFactura()-1;
+            //int idFactura = dbContext.Facturas.LastOrDefault().IdFactura;
             List<CosCumparaturiModels> cosCumparaturi = new List<CosCumparaturiModels>();
-            foreach(CosCumparaturi cos in dbContext.CosCumparaturis)
+            foreach(CosCumparaturi cos in dbContext.CosCumparaturis.Where(x=>x.IdComanda>id))
             {
                 cosCumparaturi.Add(MapDbObjectToModel(cos));
+                
             }
             return cosCumparaturi;
         }
+
+        public CosCumparaturiModels GetProdusById(int id)
+        {
+            return MapDbObjectToModel(dbContext.CosCumparaturis.FirstOrDefault(x=>x.IdCos==id));
+        }
+       
 
         public void InserareCosCumparaturi(CosCumparaturiModels cos)
         {

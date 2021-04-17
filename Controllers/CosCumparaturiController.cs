@@ -2,6 +2,7 @@
 using MagazinJocuriVideo.Repository;
 using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -17,7 +18,21 @@ namespace MagazinJocuriVideo.Controllers
         // GET: CosCumparaturi
         public ActionResult Index()
         {
-            return View();
+            
+            
+            
+            List<CosVizualizare> cosVizualizare = new List<CosVizualizare>();
+            List<CosCumparaturiModels> cos = cosCumparaturiRepository.GetAllCos();
+            foreach (CosCumparaturiModels cc in cos)
+            {
+                CosVizualizare obiect = new CosVizualizare();
+                obiect.IdCos = cc.IdCos;
+                obiect.Nume = produsRepository.GetProdusById(cc.CodProdusId).NumeProdus;
+                obiect.Cantitate=cc.Cantitate;
+                obiect.Pret=cc.Pret;
+                cosVizualizare.Add(obiect);
+            }
+            return View("Index", cosVizualizare);
         }
 
         // GET: CosCumparaturi/Details/5
@@ -35,13 +50,17 @@ namespace MagazinJocuriVideo.Controllers
 
         // POST: CosCumparaturi/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(int id,FormCollection collection)
         {
             try
             {
+                ProdusModels produs = new ProdusModels();
+                produs = produsRepository.GetProdusById(id);
                 CosCumparaturiModels cosCumparaturiModels = new CosCumparaturiModels();
                 UpdateModel(cosCumparaturiModels);
+                cosCumparaturiModels.CodProdusId = id;
                 cosCumparaturiModels.IdComanda=facturaRepository.UltimaFactura();
+                cosCumparaturiModels.Pret = cosCumparaturiModels.Cantitate * produs.Pret;
                 Console.WriteLine(cosCumparaturiModels.IdComanda);
 
                 cosCumparaturiRepository.InserareCosCumparaturi(cosCumparaturiModels);
@@ -57,7 +76,8 @@ namespace MagazinJocuriVideo.Controllers
         // GET: CosCumparaturi/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            CosCumparaturiModels cos = cosCumparaturiRepository.GetProdusById(id);
+            return View("EditCosCumparaturi", cos);
         }
 
         // POST: CosCumparaturi/Edit/5
