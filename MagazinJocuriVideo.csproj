@@ -208,6 +208,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Poze\csgo.png" />
+    <Content Include="Poze\theForest.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Models\DBObjects\MagazinJocuriVideoDataContext.dbml">
@@ -276,6 +278,7 @@
     <Content Include="Views\CosCumparaturi\CreateCosCumparaturi.cshtml" />
     <Content Include="Views\CosCumparaturi\Index.cshtml" />
     <Content Include="Views\CosCumparaturi\EditCosCumparaturi.cshtml" />
+    <Content Include="Views\CosCumparaturi\DeleteCosCumparaturi.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

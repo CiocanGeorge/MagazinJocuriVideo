@@ -86,20 +86,25 @@ namespace MagazinJocuriVideo.Controllers
         {
             try
             {
-                // TODO: Add update logic here
+                CosCumparaturiModels cosCumparaturiModels = new CosCumparaturiModels();
+                cosCumparaturiModels = cosCumparaturiRepository.GetProdusById(id);
+                UpdateModel(cosCumparaturiModels);
+
+                cosCumparaturiRepository.UpdateCosCumparaturi(cosCumparaturiModels);
 
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return View("EditCosCumparaturi");
             }
         }
 
         // GET: CosCumparaturi/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            CosCumparaturiModels cos = cosCumparaturiRepository.GetProdusById(id);
+            return View("DeleteCosCumparaturi",cos);
         }
 
         // POST: CosCumparaturi/Delete/5
@@ -108,13 +113,13 @@ namespace MagazinJocuriVideo.Controllers
         {
             try
             {
-                // TODO: Add delete logic here
+                cosCumparaturiRepository.DeleteProdusDinCos(id);
 
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return View("DeleteCosCumparaturi");
             }
         }
     }

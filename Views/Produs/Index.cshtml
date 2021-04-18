@@ -3,8 +3,13 @@
 @{
     ViewBag.Title = "Index";
 }
-
-<h2>Index</h2>
+<style>
+    th,tr
+    {
+        text-align:center;
+    }
+</style>
+<h2 style="text-align:center;">Jocuri</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -20,9 +25,6 @@
         <th>
             @Html.DisplayNameFor(model => model.Pret)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NumeImagine)
-        </th>
         <th></th>
     </tr>
 
@@ -31,15 +33,16 @@
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.NumeProdus)
+                <br />
+               <img src="~/Poze/@item.NumeImagine" width="350" height="250"/>
             </td>
-            <td>
+            <td >
                 @Html.DisplayFor(modelItem => item.Descriere)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Pret)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.NumeImagine)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.CodProdusId }) |
@@ -48,6 +51,7 @@
                 @Html.ActionLink("Adauga in Cos", "Create", "CosCumparaturi", new { id = item.CodProdusId },null)
             </td>
         </tr>
+        <hr />
     }
 
 </table>

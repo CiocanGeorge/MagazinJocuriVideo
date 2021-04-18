@@ -2,13 +2,13 @@
 @model MagazinJocuriVideo.Models.ProdusModels
 
 @{
-    ViewBag.Title = "DetailsProdus";
+    ViewBag.Title = Model.NumeProdus;
 }
 
-<h2>DetailsProdus</h2>
+<h2>@Html.DisplayFor(model => model.NumeProdus)</h2>
 
 <div>
-    <h4>ProdusModels</h4>
+    <br />
     <hr />
     <dl class="dl-horizontal">
         <dt>
