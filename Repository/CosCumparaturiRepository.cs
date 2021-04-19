@@ -47,8 +47,36 @@ namespace MagazinJocuriVideo.Repository
                 dbContext.SubmitChanges();
             }
         }
+        public int IdCos()
+        {
+            int idCos = 0;
+            foreach (CosCumparaturi cos in dbContext.CosCumparaturis)
+            {
+                idCos = cos.IdCos;
+            }
+            return idCos;
+        }
+        public decimal TotalPlata()
+        {
+            decimal total = 0;
+            foreach(CosCumparaturi cos in dbContext.CosCumparaturis.Where(x=>x.IdComanda==Ultimacomanda()))
+            {
+                total += cos.Pret;
+            }
+            return total;
+        }
        
+        
 
+        public int Ultimacomanda()
+        {
+            int cosId = 0;
+            foreach(CosCumparaturi cos in dbContext.CosCumparaturis)
+            {
+                cosId = cos.IdComanda;
+            }
+            return cosId;
+        }
         public void InserareCosCumparaturi(CosCumparaturiModels cos)
         {
             dbContext.CosCumparaturis.InsertOnSubmit(MapModelToDbObject(cos));

@@ -37,6 +37,58 @@ namespace MagazinJocuriVideo.Repository
             return valoare;*/
         }
 
+        public List<FacturaModels> GetAllFactura()
+        {
+            List<FacturaModels> facturaModels = new List<FacturaModels>();
+            foreach(Factura factura in dbContext.Facturas)
+            {
+                facturaModels.Add(MapDbObjectToModel(factura));
+            }
+            return facturaModels;
+        }
+        public FacturaModels GetFacturaById(int id)
+        {
+            return MapDbObjectToModel(dbContext.Facturas.FirstOrDefault(x=>x.IdFactura==id));
+        }
+
+        public void InserareFactura(FacturaModels factura)
+        {
+            dbContext.Facturas.InsertOnSubmit(MapModelToDbObject(factura));
+            dbContext.SubmitChanges();
+        }
+
+        public void UpdateFactura(FacturaModels factura)
+        {
+            Factura facturaDb = dbContext.Facturas.FirstOrDefault(x => x.IdFactura == factura.IdFactura);
+            if(facturaDb!=null)
+            {
+                facturaDb.IdFactura = factura.IdFactura;
+                facturaDb.IdCos = factura.IdCos;
+                facturaDb.Data = factura.Data;
+                facturaDb.IdClient = factura.IdClient;
+                facturaDb.TotalPlata = factura.TotalPlata;
+                facturaDb.AdresaLivrare = factura.AdresaLivrare;
+                dbContext.SubmitChanges();
+            }
+
+        }
+
+        private Factura MapModelToDbObject(FacturaModels factura)
+        {
+            Factura facturaDb = new Factura();
+            if (factura != null)
+            {
+                facturaDb.IdFactura = factura.IdFactura;
+                facturaDb.IdCos = factura.IdCos;
+                facturaDb.Data = factura.Data;
+                facturaDb.IdClient = factura.IdClient;
+                facturaDb.TotalPlata = factura.TotalPlata;
+                facturaDb.AdresaLivrare = factura.AdresaLivrare;
+                return facturaDb;
+            }
+            return null;
+        }
+
         private FacturaModels MapDbObjectToModel(Factura facturaDb)
         {
             FacturaModels factura = new FacturaModels();

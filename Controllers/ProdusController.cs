@@ -72,7 +72,7 @@ namespace MagazinJocuriVideo.Controllers
             }
             catch
             {
-                return View();
+                return View("EditProdus");
             }
         }
 

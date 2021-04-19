@@ -171,6 +171,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="Controllers\CosCumparaturiController.cs" />
+    <Compile Include="Controllers\FacturaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProdusController.cs" />
@@ -279,6 +280,10 @@
     <Content Include="Views\CosCumparaturi\Index.cshtml" />
     <Content Include="Views\CosCumparaturi\EditCosCumparaturi.cshtml" />
     <Content Include="Views\CosCumparaturi\DeleteCosCumparaturi.cshtml" />
+    <Content Include="Views\Factura\CreateFactura.cshtml" />
+    <Content Include="Views\Factura\Index.cshtml" />
+    <Content Include="Views\Factura\EditFactura.cshtml" />
+    <Content Include="Views\Factura\DetailsFactura.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

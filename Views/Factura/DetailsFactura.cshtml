@@ -1,0 +1,66 @@
+﻿@model MagazinJocuriVideo.Models.FacturaModels
+
+@{
+    ViewBag.Title = "DetailsFactura";
+}
+
+<h2>DetailsFactura</h2>
+
+<div>
+    <h4>FacturaModels</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.IdFactura)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdFactura)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IdCos)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdCos)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Data)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Data)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IdClient)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdClient)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalPlata)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotalPlata)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AdresaLivrare)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AdresaLivrare)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new {  id = Model.IdFactura  }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

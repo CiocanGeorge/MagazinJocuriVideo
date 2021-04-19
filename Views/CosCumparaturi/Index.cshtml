@@ -23,23 +23,27 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nume)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Cantitate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Pret)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new {  id=item.IdCos  }) |
-            @Html.ActionLink("Details", "Details", new {  id=item.IdCos }) |
-            @Html.ActionLink("Delete", "Delete", new {  id=item.IdCos })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nume)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cantitate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pret)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.IdCos }) |
+                @Html.ActionLink("Details", "Details", new { id = item.IdCos }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.IdCos })
+            </td>
+        </tr>
+    }
 
 </table>
+
+<br />
+<p style="font-size:20px; text-align:right;">@Html.ActionLink("Finalizeaza Comanda", "Create", "Factura")</p>
