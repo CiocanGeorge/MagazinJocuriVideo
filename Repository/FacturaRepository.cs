@@ -21,20 +21,22 @@ namespace MagazinJocuriVideo.Repository
 
         public int UltimaFactura()
         {
+            /*
             FacturaModels factura = new FacturaModels();
             foreach (Factura produs in dbContext.Facturas)
             {
                 factura=MapDbObjectToModel(produs);
             }
             return factura.IdFactura + 1;
-            /*
+            */
             FacturaModels factura = new FacturaModels();
-            int valoare = 0;
-            factura = MapDbObjectToModel(dbContext.Facturas.LastOrDefault());
+            int valoare = 1;
+            Factura collection = dbContext.Facturas.OrderByDescending(x=>x.IdFactura).FirstOrDefault();
+            factura = MapDbObjectToModel(collection);
             if (factura != null)
                 valoare = factura.IdFactura + 1;
             
-            return valoare;*/
+            return valoare;
         }
 
         public List<FacturaModels> GetAllFactura()

@@ -13,6 +13,7 @@ namespace MagazinJocuriVideo.Controllers
         private CosCumparaturiRepository cosCumparaturiRepository = new CosCumparaturiRepository();
         private FacturaRepository facturaRepository = new FacturaRepository();
         private ClientRepository clientRepository = new ClientRepository();
+        private ProdusRepository produsRepository = new ProdusRepository();
         // GET: Factura
         public ActionResult Index()
         {
@@ -23,8 +24,26 @@ namespace MagazinJocuriVideo.Controllers
         // GET: Factura/Details/5
         public ActionResult Details(int id)
         {
-            FacturaModels factura = facturaRepository.GetFacturaById(id);
-            return View("DetailsFactura", factura);
+            DetaliiIstoricFacturaModels detaliiFactura = new DetaliiIstoricFacturaModels();
+            FacturaModels factura=facturaRepository.GetFacturaById(id);
+
+            detaliiFactura.Adresa = factura.AdresaLivrare;
+            detaliiFactura.Data = factura.Data;
+            detaliiFactura.Total=factura.TotalPlata;
+            var idFactura = factura.IdFactura;
+            foreach(var item in cosCumparaturiRepository.GetAllProductByIdComanda(idFactura))
+            {
+                ProduseIstoricCumparareModels produse = new ProduseIstoricCumparareModels();
+                var idProdus = produsRepository.GetProdusById(item.CodProdusId);
+                produse.NumeProdus = idProdus.NumeProdus;
+                produse.DescriereProdus = idProdus.Descriere;
+                produse.Pret = idProdus.Pret;
+                produse.NumeImagine = idProdus.NumeImagine;
+                detaliiFactura.AddLista(produse);
+            }
+            
+
+            return View("DetailsFactura", detaliiFactura);
         }
 
         // GET: Factura/Create

@@ -1,66 +1,74 @@
-﻿@model MagazinJocuriVideo.Models.FacturaModels
+﻿@model MagazinJocuriVideo.Models.DetaliiIstoricFacturaModels
 
 @{
     ViewBag.Title = "DetailsFactura";
 }
-
+<style>
+    .TabelCentru {
+        color: green;
+    }
+    th, td {
+        padding-left: 15px;
+        padding-right: 15px;
+        text-align: center;
+        font-size: 18px;
+    }
+</style>
 <h2>DetailsFactura</h2>
 
 <div>
-    <h4>FacturaModels</h4>
+    <h4>DetaliiIstoricFacturaModels</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.IdFactura)
-        </dt>
+    <div class="TabelCentru">
+        <table>
+            <tr>
+                <th>
+                    <b>@Html.DisplayNameFor(model => model.Adresa)</b>
+                </th>
+                <th>
+                    <b> @Html.DisplayNameFor(model => model.Data)</b>
+                </th>
+                <th>
+                    <b>  @Html.DisplayNameFor(model => model.Total)</b>
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => model.Adresa)
+                </td>
 
-        <dd>
-            @Html.DisplayFor(model => model.IdFactura)
-        </dd>
+                <td>
+                    @Html.DisplayFor(model => model.Data)
+                </td>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.IdCos)
-        </dt>
+                <td>
+                    @Html.DisplayFor(model => model.Total)
+                </td>
+            </tr>
+        </table>
+    </div>
+    <br />
 
-        <dd>
-            @Html.DisplayFor(model => model.IdCos)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Data)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Data)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.IdClient)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.IdClient)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TotalPlata)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TotalPlata)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.AdresaLivrare)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.AdresaLivrare)
-        </dd>
-
-    </dl>
+    @foreach (var item in Model.ProduseCumparate())
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumeProdus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DescriereProdus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pret)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumeImagine)
+            </td>
+        </tr>
+        <br />
+    }
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new {  id = Model.IdFactura  }) |
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

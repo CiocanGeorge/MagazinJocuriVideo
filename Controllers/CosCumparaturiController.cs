@@ -17,10 +17,7 @@ namespace MagazinJocuriVideo.Controllers
         private ProdusRepository produsRepository = new ProdusRepository();
         // GET: CosCumparaturi
         public ActionResult Index()
-        {
-            
-            
-            
+        {            
             List<CosVizualizare> cosVizualizare = new List<CosVizualizare>();
             List<CosCumparaturiModels> cos = cosCumparaturiRepository.GetAllCos();
             foreach (CosCumparaturiModels cc in cos)
@@ -89,6 +86,7 @@ namespace MagazinJocuriVideo.Controllers
                 CosCumparaturiModels cosCumparaturiModels = new CosCumparaturiModels();
                 cosCumparaturiModels = cosCumparaturiRepository.GetProdusById(id);
                 UpdateModel(cosCumparaturiModels);
+                cosCumparaturiModels.Pret=produsRepository.GetProdusById(cosCumparaturiRepository.GetCodProdusId(id)).Pret*cosCumparaturiModels.Cantitate;
 
                 cosCumparaturiRepository.UpdateCosCumparaturi(cosCumparaturiModels);
 

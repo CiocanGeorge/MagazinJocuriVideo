@@ -37,6 +37,19 @@ namespace MagazinJocuriVideo.Repository
         {
             return MapDbObjectToModel(dbContext.CosCumparaturis.FirstOrDefault(x=>x.IdCos==id));
         }
+        public List<CosCumparaturiModels> GetAllProductByIdComanda(int id)
+        {
+            List<CosCumparaturiModels> listaCos = new List<CosCumparaturiModels>();
+            foreach(var item in dbContext.CosCumparaturis.Where(x=>x.IdComanda==id))
+            {
+                listaCos.Add(MapDbObjectToModel(item));
+            }
+            return listaCos;
+        }
+        public int GetCodProdusId(int id)
+        {
+            return MapDbObjectToModel(dbContext.CosCumparaturis.FirstOrDefault(x => x.IdCos == id)).CodProdusId;
+        }
 
        public void DeleteProdusDinCos(int id)
         {
