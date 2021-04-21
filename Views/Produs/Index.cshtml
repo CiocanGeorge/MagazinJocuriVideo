@@ -4,9 +4,15 @@
     ViewBag.Title = "Index";
 }
 <style>
-    th,tr
-    {
-        text-align:center;
+    th, td {
+        text-align: center;
+    }
+
+    p {
+        text-align: center;
+    }
+    .bordura {
+        border-bottom: 1px solid #000;
     }
 </style>
 <h2 style="text-align:center;">Jocuri</h2>
@@ -15,13 +21,13 @@
     @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
-    <tr>
+    <tr style="font-size:20px;">
         <th>
             @Html.DisplayNameFor(model => model.NumeProdus)
         </th>
-        <th>
+        <!--  <th>
             @Html.DisplayNameFor(model => model.Descriere)
-        </th>
+        </th>-->
         <th>
             @Html.DisplayNameFor(model => model.Pret)
         </th>
@@ -30,28 +36,33 @@
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
+        <tr style="font-size:25px;" >
+            <td >
                 @Html.DisplayFor(modelItem => item.NumeProdus)
                 <br />
-               <img src="~/Poze/@item.NumeImagine" width="350" height="250"/>
+                <img src="~/Poze/@item.NumeImagine" width="350" height="250" />
             </td>
-            <td >
-                @Html.DisplayFor(modelItem => item.Descriere)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Pret)
-            </td>
-            <td>
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.CodProdusId }) |
-                @Html.ActionLink("Details", "Details", new { id = item.CodProdusId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.CodProdusId }) |
-                @Html.ActionLink("Adauga in Cos", "Create", "CosCumparaturi", new { id = item.CodProdusId },null)
+            <!-- <td >
+                 @Html.DisplayFor(modelItem => item.Descriere) 
+             </td>-->
+        <td style="font-size:35px;">
+            <br />
+            <br />
+            @Html.DisplayFor(modelItem => item.Pret) EURO
+        </td>
+            <td style="font-size:20px;">
+                <br />
+                <br />
+                @Html.ActionLink("Edit", "Edit", new { id = item.CodProdusId })
+                <br />
+                @Html.ActionLink("Details", "Details", new { id = item.CodProdusId })
+                <br />
+                @Html.ActionLink("Delete", "Delete", new { id = item.CodProdusId })
+                <br />
+                @Html.ActionLink("Adauga in Cos", "Create", "CosCumparaturi", new { id = item.CodProdusId }, null)
             </td>
         </tr>
-        <hr />
+       
     }
 
 </table>
