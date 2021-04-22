@@ -3,16 +3,18 @@
 @{
     ViewBag.Title = "EditCosCumparaturi";
 }
-
-<h2>EditCosCumparaturi</h2>
-
+<style>
+    .form-horizontal {
+        padding-left: 30%;
+    }
+</style>
+<h2 style="text-align:center;">Editare</h2>
+<br />
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>CosCumparaturiModels</h4>
-        <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
  
 
@@ -26,9 +28,9 @@
 
         
 
-        <div class="form-group">
+        <div class="form-group " style="padding-left:10%;">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Save" class="btn btn-danger" />
             </div>
         </div>
     </div>
