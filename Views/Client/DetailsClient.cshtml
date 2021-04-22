@@ -3,64 +3,64 @@
 @{
     ViewBag.Title = "DetailsClient";
 }
+<style>
+    th, td {
+        text-align: center;
+        padding-left: 35px;
+    }
 
-<h2>DetailsClient</h2>
+    .DivCentrat {
+        display: flex;
+        justify-content: center;
+    }
+</style>
 
-<div>
-    <h4>ClientiModels</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.IdClient)
-        </dt>
+<h2 style="text-align:center;">Detalii client</h2>
+<br />
+<div class="DivCentrat">
+    <table style="text-align:center; font-size:15px; ">
+        <tr>
+            <th>
+                Nume
+            </th>
+            <th>
+                Prenume
+            </th>
+            <th>
+                Telefon
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                Adresa
+            </th>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(model => model.Nume)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Prenume)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Telefon)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Adresa)
+            </td>
+        </tr>
 
-        <dd>
-            @Html.DisplayFor(model => model.IdClient)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Nume)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Nume)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Prenume)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Prenume)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Telefon)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Telefon)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Adresa)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Adresa)
-        </dd>
-
-    </dl>
+    </table>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new {  id = Model.IdClient }) |
+<br />
+<p style=" font-size: 25px;">
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdClient })
+<p style="text-align:right; font-size:25px; margin-top:-50px;">
     @Html.ActionLink("Back to List", "Index")
 </p>
+</p>
+
