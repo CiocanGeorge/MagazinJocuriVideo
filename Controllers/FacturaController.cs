@@ -26,7 +26,7 @@ namespace MagazinJocuriVideo.Controllers
         {
             DetaliiIstoricFacturaModels detaliiFactura = new DetaliiIstoricFacturaModels();
             FacturaModels factura=facturaRepository.GetFacturaById(id);
-
+           
             detaliiFactura.Adresa = factura.AdresaLivrare;
             detaliiFactura.Data = factura.Data;
             detaliiFactura.Total=factura.TotalPlata;
