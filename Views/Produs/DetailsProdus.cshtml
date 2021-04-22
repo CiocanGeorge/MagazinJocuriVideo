@@ -5,53 +5,50 @@
     ViewBag.Title = Model.NumeProdus;
 }
 
-<h2>@Html.DisplayFor(model => model.NumeProdus)</h2>
+<style>
+    th, td {
+        text-align: center;
+        padding-left: 35px;
+    }
+    .DivCentrat {
+        display: flex;
+        justify-content: center;
+    }
+</style>
 
-<div>
-    <br />
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.CodProdusId)
-        </dt>
+<h2 style="text-align:center;">@Html.DisplayFor(model => model.NumeProdus)</h2>
+<div class="DivCentrat">
+    <table style="text-align:center; font-size:15px; ">
+        <tr>
+            <th>
+                Nume_Produs
+            </th>
+            <th colspan="5">
+                Descriere
+            </th>
+            <th>
+                Pret
+            </th>
+            <th>
+                Nume Imagine
+            </th>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(model => model.NumeProdus)
+            </td>
+            <td colspan="5" style="text-align:center;">
+                @Html.DisplayFor(model => model.Descriere)
+            </td>
 
-        <dd>
-            @Html.DisplayFor(model => model.CodProdusId)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.NumeProdus)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NumeProdus)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Descriere)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Descriere)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Pret)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Pret)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.NumeImagine)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NumeImagine)
-        </dd>
-
-    </dl>
+            <td>
+                @Html.DisplayFor(model => model.Pret) EURO
+            </td>
+            <td>
+                <img src="~/Poze/@Model.NumeImagine" width="350" height="250" />
+            </td>
+        </tr>
+    </table>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new {  id = Model.CodProdusId }) |

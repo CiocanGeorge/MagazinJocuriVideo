@@ -9,18 +9,17 @@
         padding-left: 35px;
     }
 
-    .center-block {
-        
+    .DivCentrat {
+        display: flex;
+        justify-content: center;
     }
-
-    
 </style>
 
 <h2 style="text-align:center;">Stergere produs</h2>
 
 <h3 style="text-align:center;">Sigur doriti sa stergeti acest produs?</h3>
 <hr />
-<div class="center-block">
+<div class="DivCentrat">
 
 
     <table style="text-align:center; font-size:15px; ">
@@ -42,10 +41,10 @@
             <td>
                 @Html.DisplayFor(model => model.NumeProdus)
             </td>
-            <td  colspan="5" style="text-align:center;">
+            <td colspan="5" style="text-align:center;">
                 @Html.DisplayFor(model => model.Descriere)
             </td>
-            
+
             <td>
                 @Html.DisplayFor(model => model.Pret) EURO
             </td>
@@ -55,14 +54,13 @@
         </tr>
     </table>
 
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color" style="padding-left:40%;">
-            <input type="submit" value="Delete" class="btn btn-danger" />
-        </div>
-    }
-
 </div>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-actions no-color" style="padding-left:40%;">
+        <input type="submit" value="Delete" class="btn btn-danger" />
+    </div>
+}
 @Html.ActionLink("Back to List", "Index")
