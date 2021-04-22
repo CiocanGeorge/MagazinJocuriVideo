@@ -4,23 +4,21 @@
     ViewBag.Title = "DetailsFactura";
 }
 <style>
-    .TabelCentru {
-        color: green;
-    }
     th, td {
-        padding-left: 15px;
-        padding-right: 15px;
         text-align: center;
-        font-size: 18px;
+        padding-left: 35px;
+    }
+
+    .DivCentrat {
+        display: flex;
+        justify-content: center;
     }
 </style>
-<h2>DetailsFactura</h2>
-
+<h2 style="text-align:center;">Detalii factura</h2>
+<br />
 <div>
-    <h4>DetaliiIstoricFacturaModels</h4>
-    <hr />
-    <div class="TabelCentru">
-        <table>
+    <div class="DivCentrat">
+        <table style="text-align:center; font-size:25px; ">
             <tr>
                 <th>
                     <b>@Html.DisplayNameFor(model => model.Adresa)</b>
@@ -48,27 +46,38 @@
         </table>
     </div>
     <br />
-    
-    @foreach (var item in Model.ProduseCumparate())
-    {
-        
+    <br />
+    <table style="text-align:center; font-size:15px; ">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.NumeProdus)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DescriereProdus)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Pret)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NumeImagine)
-            </td>
+            <th>Nume</th>
+            <th>Descriere</th>
+            <th>Pret</th>
+            <th></th>
         </tr>
-        <br />
-    }
+        @foreach (var item in Model.ProduseCumparate())
+        {
+            <tr >
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumeProdus)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DescriereProdus)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Pret)
+                </td>
+                <td>
+                    <img src="~/Poze/@item.NumeImagine" width="350" height="250" />
+                </td>
+            </tr>
+            <tr>
+                <td><br /></td>
+            </tr>
+        }
+     
+    </table>
 </div>
+<br />
 <p>
     @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
     @Html.ActionLink("Back to List", "Index")

@@ -3,12 +3,25 @@
 @{
     ViewBag.Title = "Index";
 }
+<style>
+    th, td {
+        text-align: center;
+    }
 
-<h2>Index</h2>
+    p {
+        text-align: center;
+    }
+
+    .bordura {
+        border-bottom: 1px solid #000;
+    }
+</style>
+<h2 style="text-align:center;">Istoric comenzi</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+<br />
 <table class="table">
     <tr>
 
