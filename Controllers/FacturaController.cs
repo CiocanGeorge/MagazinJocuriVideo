@@ -54,6 +54,7 @@ namespace MagazinJocuriVideo.Controllers
                 return RedirectToAction("Index", "Produs");
             }
             decimal totalPret = cosCumparaturiRepository.TotalPlata();
+            totalPret = totalPret + totalPret * (decimal)0.19;
             ViewBag.Total = totalPret.ToString();
             return View("CreateFactura");
         }
@@ -70,7 +71,9 @@ namespace MagazinJocuriVideo.Controllers
                 facturaModels.IdCos = cosCumparaturiRepository.IdCos();
                 facturaModels.IdClient = clientRepository.GetClientByEmail(User.Identity.Name);
                 facturaModels.Data = DateTime.UtcNow;
-                facturaModels.TotalPlata= cosCumparaturiRepository.TotalPlata();
+                var totalPlata = cosCumparaturiRepository.TotalPlata();
+                totalPlata = totalPlata + totalPlata * (decimal)0.19;
+                facturaModels.TotalPlata = totalPlata;
 
                 facturaRepository.InserareFactura(facturaModels);
 

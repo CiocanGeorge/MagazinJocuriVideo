@@ -26,7 +26,7 @@ namespace MagazinJocuriVideo.Controllers
                 obiect.IdCos = cc.IdCos;
                 obiect.Nume = produsRepository.GetProdusById(cc.CodProdusId).NumeProdus;
                 obiect.Cantitate=cc.Cantitate;
-                obiect.Pret=cc.Pret;
+                obiect.Pret=cc.Pret+cc.Pret*(decimal)0.19;
                 cosVizualizare.Add(obiect);
             }
             return View("Index", cosVizualizare);

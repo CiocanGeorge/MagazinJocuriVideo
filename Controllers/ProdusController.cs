@@ -15,6 +15,10 @@ namespace MagazinJocuriVideo.Controllers
         public ActionResult Index()
         {
             List<ProdusModels> produse = produsRepository.GetAllProduse();
+            foreach(var item in produse)
+            {
+                item.Pret += item.Pret * (decimal)0.19;
+            }
             return View("Index",produse);
         }
 
