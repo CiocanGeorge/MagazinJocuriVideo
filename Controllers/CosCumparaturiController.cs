@@ -52,17 +52,30 @@ namespace MagazinJocuriVideo.Controllers
         {
             try
             {
+                
                 ProdusModels produs = new ProdusModels();
                 produs = produsRepository.GetProdusById(id);
                 CosCumparaturiModels cosCumparaturiModels = new CosCumparaturiModels();
-                UpdateModel(cosCumparaturiModels);
-                cosCumparaturiModels.CodProdusId = id;
-                cosCumparaturiModels.IdComanda=facturaRepository.UltimaFactura();
-                cosCumparaturiModels.Pret = cosCumparaturiModels.Cantitate * produs.Pret;
-                cosCumparaturiModels.ClientId = clientRepository.GetClientByEmail(User.Identity.Name);
+                if (cosCumparaturiRepository.ExistaProdus(id, clientRepository.GetClientByEmail(User.Identity.Name)))
+                {
+                    cosCumparaturiModels = cosCumparaturiRepository.GetCos(id, clientRepository.GetClientByEmail(User.Identity.Name));
+                    int cantitate = cosCumparaturiRepository.GetCantitate(id, clientRepository.GetClientByEmail(User.Identity.Name));
+                    UpdateModel(cosCumparaturiModels);
+                    cosCumparaturiModels.Cantitate = cosCumparaturiModels.Cantitate + cantitate;
+                    cosCumparaturiModels.Pret = produsRepository.GetProdusById(cosCumparaturiRepository.GetCodProdusId(id, clientRepository.GetClientByEmail(User.Identity.Name))).Pret * cosCumparaturiModels.Cantitate;
+                    cosCumparaturiRepository.UpdateCosCumparaturi(cosCumparaturiModels);
+               
+                }
+                else
+                {
+                    UpdateModel(cosCumparaturiModels);
+                    cosCumparaturiModels.CodProdusId = id;
+                    cosCumparaturiModels.IdComanda = facturaRepository.UltimaFactura();
+                    cosCumparaturiModels.Pret = cosCumparaturiModels.Cantitate * produs.Pret;
+                    cosCumparaturiModels.ClientId = clientRepository.GetClientByEmail(User.Identity.Name);
 
-                cosCumparaturiRepository.InserareCosCumparaturi(cosCumparaturiModels);
-
+                    cosCumparaturiRepository.InserareCosCumparaturi(cosCumparaturiModels);
+                }
                 return RedirectToAction("Index");
             }
             catch
@@ -87,7 +100,7 @@ namespace MagazinJocuriVideo.Controllers
                 CosCumparaturiModels cosCumparaturiModels = new CosCumparaturiModels();
                 cosCumparaturiModels = cosCumparaturiRepository.GetProdusById(id);
                 UpdateModel(cosCumparaturiModels);
-                cosCumparaturiModels.Pret=produsRepository.GetProdusById(cosCumparaturiRepository.GetCodProdusId(id)).Pret*cosCumparaturiModels.Cantitate;
+                cosCumparaturiModels.Pret = produsRepository.GetProdusById(cosCumparaturiRepository.GetCodProdusId(id)).Pret * cosCumparaturiModels.Cantitate;
 
                 cosCumparaturiRepository.UpdateCosCumparaturi(cosCumparaturiModels);
 

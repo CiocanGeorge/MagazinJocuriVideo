@@ -18,7 +18,7 @@ namespace MagazinJocuriVideo.Controllers
         // GET: Factura
         public ActionResult Index()
         {
-            List<FacturaModels> factura = facturaRepository.GetAllFactura();
+            List<FacturaModels> factura = facturaRepository.GetAllFacturaByUser(clientRepository.GetClientByEmail(User.Identity.Name));
             return View("Index",factura);
         }
 
@@ -49,11 +49,11 @@ namespace MagazinJocuriVideo.Controllers
         // GET: Factura/Create
         public ActionResult Create()
         {
-            if(cosCumparaturiRepository.Ultimacomanda()!=facturaRepository.UltimaFactura())
+            if(cosCumparaturiRepository.Ultimacomanda(clientRepository.GetClientByEmail(User.Identity.Name)) !=facturaRepository.UltimaFactura())
             {
                 return RedirectToAction("Index", "Produs");
             }
-            decimal totalPret = cosCumparaturiRepository.TotalPlata();
+            decimal totalPret = cosCumparaturiRepository.TotalPlata(clientRepository.GetClientByEmail(User.Identity.Name));
             totalPret = totalPret + totalPret * (decimal)0.19;
             ViewBag.Total = totalPret.ToString();
             return View("CreateFactura");
@@ -67,11 +67,11 @@ namespace MagazinJocuriVideo.Controllers
             {
                 FacturaModels facturaModels = new FacturaModels();
                 UpdateModel(facturaModels);
-                facturaModels.IdFactura = cosCumparaturiRepository.Ultimacomanda();
+                facturaModels.IdFactura = cosCumparaturiRepository.Ultimacomanda(clientRepository.GetClientByEmail(User.Identity.Name));
                 facturaModels.IdCos = cosCumparaturiRepository.IdCos();
                 facturaModels.IdClient = clientRepository.GetClientByEmail(User.Identity.Name);
                 facturaModels.Data = DateTime.UtcNow;
-                var totalPlata = cosCumparaturiRepository.TotalPlata();
+                var totalPlata = cosCumparaturiRepository.TotalPlata(clientRepository.GetClientByEmail(User.Identity.Name));
                 totalPlata = totalPlata + totalPlata * (decimal)0.19;
                 facturaModels.TotalPlata = totalPlata;
                     

@@ -39,10 +39,10 @@ namespace MagazinJocuriVideo.Repository
             return valoare;
         }
 
-        public List<FacturaModels> GetAllFactura()
+        public List<FacturaModels> GetAllFacturaByUser(Guid Id)
         {
             List<FacturaModels> facturaModels = new List<FacturaModels>();
-            foreach(Factura factura in dbContext.Facturas)
+            foreach(Factura factura in dbContext.Facturas.Where(x=>x.IdClient==Id))
             {
                 facturaModels.Add(MapDbObjectToModel(factura));
             }

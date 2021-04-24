@@ -11,6 +11,7 @@ namespace MagazinJocuriVideo.Repository
     {
         private MagazinJocuriVideoDataContextDataContext dbContext;
         private FacturaRepository facturaRepository = new FacturaRepository();
+        private ProdusRepository produsRepository = new ProdusRepository();
         public CosCumparaturiRepository()
         {
             dbContext = new MagazinJocuriVideoDataContextDataContext();
@@ -46,11 +47,30 @@ namespace MagazinJocuriVideo.Repository
             }
             return listaCos;
         }
+        public CosCumparaturiModels GetCos(int id,Guid idClient)
+        {
+            return MapDbObjectToModel(dbContext.CosCumparaturis.FirstOrDefault(x => x.CodProdusId == id && x.IdClient==idClient));
+        }
+        public int GetCodProdusId(int id,Guid idClient)
+        {
+            return MapDbObjectToModel(dbContext.CosCumparaturis.FirstOrDefault(x => x.CodProdusId == id && x.IdClient == idClient)).CodProdusId;
+        }
         public int GetCodProdusId(int id)
         {
             return MapDbObjectToModel(dbContext.CosCumparaturis.FirstOrDefault(x => x.IdCos == id)).CodProdusId;
         }
-
+        public bool ExistaProdus(int id,Guid idClient)
+        {
+            ProdusModels produs = produsRepository.GetProdusById(id);
+            CosCumparaturi cos = dbContext.CosCumparaturis.FirstOrDefault(x => x.CodProdusId == id && x.IdClient == idClient);
+            if (cos == null)
+                return false;
+            return true;
+        }
+        public int GetCantitate(int id, Guid idClient)
+        {
+            return dbContext.CosCumparaturis.FirstOrDefault(x => x.CodProdusId == id && x.IdClient == idClient).Cantitate;
+        }
        public void DeleteProdusDinCos(int id)
         {
             CosCumparaturi cosDb = dbContext.CosCumparaturis.FirstOrDefault(x => x.IdCos == id);
@@ -69,22 +89,22 @@ namespace MagazinJocuriVideo.Repository
             }
             return idCos;
         }
-        public decimal TotalPlata()
+        public decimal TotalPlata(Guid id)
         {
             decimal total = 0;
-            foreach(CosCumparaturi cos in dbContext.CosCumparaturis.Where(x=>x.IdComanda==Ultimacomanda()))
+            foreach(CosCumparaturi cos in dbContext.CosCumparaturis.Where(x=>x.IdComanda==Ultimacomanda(id) && x.IdClient==id))
             {
                 total += cos.Pret;
             }
             return total;
         }
-       
-        
+  
 
-        public int Ultimacomanda()
+
+        public int Ultimacomanda(Guid id)
         {
             int cosId = 0;
-            foreach(CosCumparaturi cos in dbContext.CosCumparaturis)
+            foreach(CosCumparaturi cos in dbContext.CosCumparaturis.Where(x=>x.IdClient==id))
             {
                 cosId = cos.IdComanda;
             }
