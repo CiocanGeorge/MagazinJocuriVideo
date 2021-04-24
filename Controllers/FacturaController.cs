@@ -70,11 +70,13 @@ namespace MagazinJocuriVideo.Controllers
                 facturaModels.IdFactura = cosCumparaturiRepository.Ultimacomanda();
                 facturaModels.IdCos = cosCumparaturiRepository.IdCos();
                 facturaModels.IdClient = clientRepository.GetClientByEmail(User.Identity.Name);
+                if(facturaModels.IdClient==null)
+
                 facturaModels.Data = DateTime.UtcNow;
                 var totalPlata = cosCumparaturiRepository.TotalPlata();
                 totalPlata = totalPlata + totalPlata * (decimal)0.19;
                 facturaModels.TotalPlata = totalPlata;
-
+                    return RedirectToAction("Register","Account");
                 facturaRepository.InserareFactura(facturaModels);
 
                 return RedirectToAction("Index");
@@ -122,7 +124,8 @@ namespace MagazinJocuriVideo.Controllers
         // GET: Factura/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            FacturaModels facuta = facturaRepository.GetFacturaById(id);
+            return View("DeleteFactura",facuta);
         }
 
         // POST: Factura/Delete/5
@@ -131,13 +134,13 @@ namespace MagazinJocuriVideo.Controllers
         {
             try
             {
-                // TODO: Add delete logic here
+                facturaRepository.DeleteFactura(id);
 
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return View("DeleteFactura");
             }
         }
     }

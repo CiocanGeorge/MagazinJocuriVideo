@@ -72,7 +72,15 @@ namespace MagazinJocuriVideo.Repository
                 facturaDb.AdresaLivrare = factura.AdresaLivrare;
                 dbContext.SubmitChanges();
             }
-
+        }
+        public void DeleteFactura(int id)
+        {
+            Factura facturaDb = dbContext.Facturas.FirstOrDefault(x => x.IdFactura == id);
+            if(facturaDb!=null)
+            {
+                dbContext.Facturas.DeleteOnSubmit(facturaDb);
+                dbContext.SubmitChanges();
+            }
         }
 
         private Factura MapModelToDbObject(FacturaModels factura)

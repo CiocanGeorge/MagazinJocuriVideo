@@ -27,7 +27,10 @@ namespace MagazinJocuriVideo.Repository
         public Guid GetClientByEmail(string email)
         {
             ClientiModels client = MapDbObjectToModel(dbContext.Clientis.FirstOrDefault(x => x.Email == email));
+            if (client == null)
+                return Guid.Empty;
             return client.IdClient;
+            
         }
 
         public List<ClientiModels> GetAllClient()
