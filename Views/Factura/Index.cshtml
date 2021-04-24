@@ -17,10 +17,12 @@
     }
 </style>
 <h2 style="text-align:center;">Istoric comenzi</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+@if (User.IsInRole("Admin"))
+{
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+}
 <br />
 <table class="table">
     <tr>
@@ -37,23 +39,24 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.IdFactura)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Data)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TotalPlata)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new {  id=item.IdFactura  }) |
-            @Html.ActionLink("Details", "Details", new {  id=item.IdFactura }) |
-            @Html.ActionLink("Delete", "Delete", new {  id=item.IdFactura })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdFactura)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Data)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalPlata)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.IdFactura }) |
+                @Html.ActionLink("Details", "Details", new { id = item.IdFactura }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.IdFactura })
+            </td>
+        </tr>
+    }
 
 </table>
