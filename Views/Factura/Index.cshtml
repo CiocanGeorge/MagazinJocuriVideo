@@ -52,9 +52,18 @@
                 @Html.DisplayFor(modelItem => item.TotalPlata)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.IdFactura }) |
-                @Html.ActionLink("Details", "Details", new { id = item.IdFactura }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.IdFactura })
+                @if (User.IsInRole("User"))
+                {
+                    @Html.ActionLink("Details", "Details", new { id = item.IdFactura }) 
+                }
+                @if (User.IsInRole("Admin"))
+                {
+                    @Html.ActionLink("Edit", "Edit", new { id = item.IdFactura }) 
+                    @Html.ActionLink("Details", "Details", new { id = item.IdFactura }) 
+                    @Html.ActionLink("Delete", "Delete", new { id = item.IdFactura })
+                }
+
+
             </td>
         </tr>
     }

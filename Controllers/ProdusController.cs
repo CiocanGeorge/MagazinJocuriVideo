@@ -28,13 +28,13 @@ namespace MagazinJocuriVideo.Controllers
             ProdusModels produs = produsRepository.GetProdusById(id);
             return View("DetailsProdus",produs);
         }
-
+        [Authorize(Roles = "Admin")]
         // GET: Produs/Create
         public ActionResult Create()
         {
             return View("CreateProdus");
         }
-
+        [Authorize(Roles = "Admin")]
         // POST: Produs/Create
         [HttpPost]
         public ActionResult Create(FormCollection collection)
@@ -53,14 +53,14 @@ namespace MagazinJocuriVideo.Controllers
                 return View("CreateProdus");
             }
         }
-
+        [Authorize(Roles = "Admin")]
         // GET: Produs/Edit/5
         public ActionResult Edit(int id)
         {
             ProdusModels produs = produsRepository.GetProdusById(id);
             return View("EditProdus",produs);
         }
-
+        [Authorize(Roles = "Admin")]
         // POST: Produs/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
@@ -79,14 +79,14 @@ namespace MagazinJocuriVideo.Controllers
                 return View("EditProdus");
             }
         }
-
+        [Authorize(Roles = "Admin")]
         // GET: Produs/Delete/5
         public ActionResult Delete(int id)
         {
             ProdusModels produs = produsRepository.GetProdusById(id);
             return View("DeleteProdus", produs);
         }
-
+        [Authorize(Roles = "Admin")]
         // POST: Produs/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)

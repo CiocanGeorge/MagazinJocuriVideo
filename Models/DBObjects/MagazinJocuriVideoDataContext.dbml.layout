@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 14.5, 8.5" name="MagazinJocuriVideoDataContext">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 14.125, 8.5" name="MagazinJocuriVideoDataContext">
   <DataContextMoniker Name="/MagazinJocuriVideoDataContextDataContext" />
   <nestedChildShapes>
     <classShape Id="a852d323-6862-4fb5-92f4-0c44bbd0bce0" absoluteBounds="0.75, 0.75, 2, 1.1939925130208335">
@@ -32,30 +32,6 @@
         <elementListCompartment Id="865c9621-c3c3-49c3-af75-b3c7e9ddec24" absoluteBounds="0.765, 3.21, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="e415ecb6-2262-491d-a2c2-c3c22a3e34b7" absoluteBounds="9.5, 4.375, 2, 1.9631982421875005">
-      <DataClassMoniker Name="/MagazinJocuriVideoDataContextDataContext/Clienti" />
-      <nestedChildShapes>
-        <elementListCompartment Id="2ae426f2-53bc-4062-b5f1-57a9a6684eef" absoluteBounds="9.515, 4.835, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="09e0fa73-da24-4dd9-b76e-e107ba9855dc" absoluteBounds="9.5, 1.375, 2, 1.7708968098958329">
-      <DataClassMoniker Name="/MagazinJocuriVideoDataContextDataContext/CosCumparaturi" />
-      <nestedChildShapes>
-        <elementListCompartment Id="46d07160-4399-44c7-9e92-ddd8f6ec00ff" absoluteBounds="9.515, 1.835, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="2894c658-d44f-4674-97cc-c71526610fab" absoluteBounds="12.25, 1.375, 2, 1.9631982421875003">
-      <DataClassMoniker Name="/MagazinJocuriVideoDataContextDataContext/Factura" />
-      <nestedChildShapes>
-        <elementListCompartment Id="fbfa0085-8a5a-4e65-982f-9c0861170f2e" absoluteBounds="12.265, 1.835, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="77a9097a-283a-49c9-9137-82d569d9a972" absoluteBounds="6.75, 1.375, 2, 1.7708968098958329">
-      <DataClassMoniker Name="/MagazinJocuriVideoDataContextDataContext/Produse" />
-      <nestedChildShapes>
-        <elementListCompartment Id="a577b60f-a495-4fb3-a2ec-ba1ba0bf164c" absoluteBounds="6.765, 1.835, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
     <associationConnector edgePoints="[(1.75 : 1.94399251302083); (1.75 : 2.34699625651042); (3.5 : 2.34699625651042)]" fixedFrom="Algorithm" fixedTo="NotFixed">
       <AssociationMoniker Name="/MagazinJocuriVideoDataContextDataContext/AspNetRole/AspNetRole_AspNetUserRole" />
       <nodes>
@@ -63,14 +39,14 @@
         <classShapeMoniker Id="b06b147f-12fb-45fd-9a55-2573b8e65a4b" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(1.75 : 5.8670068359375); (1.75 : 7.41429768880208); (3.5 : 7.41429768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(1.75 : 5.8670068359375); (1.75 : 7.41429768880208); (3.5 : 7.41429768880208)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/MagazinJocuriVideoDataContextDataContext/AspNetUser/AspNetUser_AspNetUserClaim" />
       <nodes>
         <classShapeMoniker Id="e022b1c6-4d04-4466-ada0-85762cffdea7" />
         <classShapeMoniker Id="72e042e7-a3dd-4a03-94c3-d3b21c808d46" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 5.06814697265625); (3.5 : 5.06814697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.75 : 5.06814697265625); (3.5 : 5.06814697265625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/MagazinJocuriVideoDataContextDataContext/AspNetUser/AspNetUser_AspNetUserLogin" />
       <nodes>
         <classShapeMoniker Id="e022b1c6-4d04-4466-ada0-85762cffdea7" />
@@ -84,25 +60,56 @@
         <classShapeMoniker Id="b06b147f-12fb-45fd-9a55-2573b8e65a4b" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(11.5 : 5.35659912109375); (13.25 : 5.35659912109375); (13.25 : 3.3381982421875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <classShape Id="b4b83570-d8a5-4bee-bf33-0b64a59a93ce" absoluteBounds="6.375, 0.875, 2, 1.9631982421875003">
+      <DataClassMoniker Name="/MagazinJocuriVideoDataContextDataContext/Clienti" />
+      <nestedChildShapes>
+        <elementListCompartment Id="c574eca6-4b60-468b-9edc-fd47f6a1649d" absoluteBounds="6.39, 1.335, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="4325ed9a-ec15-4ebc-adfe-28a3330fe09f" absoluteBounds="9.125, 0.875, 2, 1.9631982421875003">
+      <DataClassMoniker Name="/MagazinJocuriVideoDataContextDataContext/CosCumparaturi" />
+      <nestedChildShapes>
+        <elementListCompartment Id="f27db7b4-a8ce-4189-83ab-c794660899df" absoluteBounds="9.14, 1.335, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="aaf7c555-c50b-4c9b-a411-899b3f946fc0" absoluteBounds="11.875, 0.875, 2, 1.9631982421875003">
+      <DataClassMoniker Name="/MagazinJocuriVideoDataContextDataContext/Factura" />
+      <nestedChildShapes>
+        <elementListCompartment Id="cc795d42-c942-4fb9-a2b3-563be6ad41fa" absoluteBounds="11.89, 1.335, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="d7560955-6a74-495b-917e-53e002c183f9" absoluteBounds="6.375, 4, 2, 1.7708968098958327">
+      <DataClassMoniker Name="/MagazinJocuriVideoDataContextDataContext/Produse" />
+      <nestedChildShapes>
+        <elementListCompartment Id="402a255b-1b10-4375-a9c9-4b295a2775ac" absoluteBounds="6.39, 4.46, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(8.375 : 1.85659912109375); (9.125 : 1.85659912109375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/MagazinJocuriVideoDataContextDataContext/Clienti/Clienti_CosCumparaturi" />
+      <nodes>
+        <classShapeMoniker Id="b4b83570-d8a5-4bee-bf33-0b64a59a93ce" />
+        <classShapeMoniker Id="4325ed9a-ec15-4ebc-adfe-28a3330fe09f" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(8.375 : 2.8381982421875); (8.75 : 3.2131982421875); (10.0416666666667 : 3.2131982421875 : JumpStart); (10.2083333333333 : 3.2131982421875 : JumpEnd); (11.501509152494 : 3.2131982421875); (11.876509152494 : 2.8381982421875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/MagazinJocuriVideoDataContextDataContext/Clienti/Clienti_Factura" />
       <nodes>
-        <classShapeMoniker Id="e415ecb6-2262-491d-a2c2-c3c22a3e34b7" />
-        <classShapeMoniker Id="2894c658-d44f-4674-97cc-c71526610fab" />
+        <classShapeMoniker Id="b4b83570-d8a5-4bee-bf33-0b64a59a93ce" />
+        <classShapeMoniker Id="aaf7c555-c50b-4c9b-a411-899b3f946fc0" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(11.5 : 2.26044840494792); (12.25 : 2.26044840494792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(11.125 : 1.85659912109375); (11.875 : 1.85659912109375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/MagazinJocuriVideoDataContextDataContext/CosCumparaturi/CosCumparaturi_Factura" />
       <nodes>
-        <classShapeMoniker Id="09e0fa73-da24-4dd9-b76e-e107ba9855dc" />
-        <classShapeMoniker Id="2894c658-d44f-4674-97cc-c71526610fab" />
+        <classShapeMoniker Id="4325ed9a-ec15-4ebc-adfe-28a3330fe09f" />
+        <classShapeMoniker Id="aaf7c555-c50b-4c9b-a411-899b3f946fc0" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(8.75 : 2.26044840494792); (9.5 : 2.26044840494792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(8.375 : 4.88544840494792); (10.125 : 4.88544840494792); (10.125 : 2.8381982421875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/MagazinJocuriVideoDataContextDataContext/Produse/Produse_CosCumparaturi" />
       <nodes>
-        <classShapeMoniker Id="77a9097a-283a-49c9-9137-82d569d9a972" />
-        <classShapeMoniker Id="09e0fa73-da24-4dd9-b76e-e107ba9855dc" />
+        <classShapeMoniker Id="d7560955-6a74-495b-917e-53e002c183f9" />
+        <classShapeMoniker Id="4325ed9a-ec15-4ebc-adfe-28a3330fe09f" />
       </nodes>
     </associationConnector>
   </nestedChildShapes>

@@ -19,13 +19,13 @@ namespace MagazinJocuriVideo.Repository
         {
             dbContext = _dbContext;
         }
-        public List<CosCumparaturiModels> GetAllCos()
+        public List<CosCumparaturiModels> GetAllCosByUser(Guid idClient)
         {
             int id;
             id = facturaRepository.UltimaFactura()-1;
             //int idFactura = dbContext.Facturas.LastOrDefault().IdFactura;
             List<CosCumparaturiModels> cosCumparaturi = new List<CosCumparaturiModels>();
-            foreach(CosCumparaturi cos in dbContext.CosCumparaturis.Where(x=>x.IdComanda>id))
+            foreach(CosCumparaturi cos in dbContext.CosCumparaturis.Where(x=>x.IdComanda>id && x.IdClient==idClient))
             {
                 cosCumparaturi.Add(MapDbObjectToModel(cos));
                 
@@ -106,6 +106,7 @@ namespace MagazinJocuriVideo.Repository
                 cosDb.CodProdusId = cos.CodProdusId;
                 cosDb.Cantitate = cos.Cantitate;
                 cosDb.Pret = cos.Pret;
+                cosDb.IdClient = cos.ClientId;
                 dbContext.SubmitChanges();
             }
         }
@@ -120,6 +121,7 @@ namespace MagazinJocuriVideo.Repository
                 cosDb.CodProdusId = cos.CodProdusId;
                 cosDb.Cantitate = cos.Cantitate;
                 cosDb.Pret = cos.Pret;
+                cosDb.IdClient = cos.ClientId;
                 return cosDb;
             }
             return null;
@@ -135,6 +137,7 @@ namespace MagazinJocuriVideo.Repository
                 cos.CodProdusId = cosDb.CodProdusId;
                 cos.Cantitate = cosDb.Cantitate;
                 cos.Pret = cosDb.Pret;
+                cos.ClientId = cosDb.IdClient;
                 return cos;
             }
             return null;

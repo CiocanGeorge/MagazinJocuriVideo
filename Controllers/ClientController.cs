@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace MagazinJocuriVideo.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class ClientController : Controller
     {
         private ClientRepository clientRepository = new ClientRepository();

@@ -1198,6 +1198,8 @@ namespace MagazinJocuriVideo.Models.DBObjects
 		
 		private string _Adresa;
 		
+		private EntitySet<CosCumparaturi> _CosCumparaturis;
+		
 		private EntitySet<Factura> _Facturas;
 		
     #region Extensibility Method Definitions
@@ -1220,6 +1222,7 @@ namespace MagazinJocuriVideo.Models.DBObjects
 		
 		public Clienti()
 		{
+			this._CosCumparaturis = new EntitySet<CosCumparaturi>(new Action<CosCumparaturi>(this.attach_CosCumparaturis), new Action<CosCumparaturi>(this.detach_CosCumparaturis));
 			this._Facturas = new EntitySet<Factura>(new Action<Factura>(this.attach_Facturas), new Action<Factura>(this.detach_Facturas));
 			OnCreated();
 		}
@@ -1344,6 +1347,19 @@ namespace MagazinJocuriVideo.Models.DBObjects
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Clienti_CosCumparaturi", Storage="_CosCumparaturis", ThisKey="IdClient", OtherKey="IdClient")]
+		public EntitySet<CosCumparaturi> CosCumparaturis
+		{
+			get
+			{
+				return this._CosCumparaturis;
+			}
+			set
+			{
+				this._CosCumparaturis.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Clienti_Factura", Storage="_Facturas", ThisKey="IdClient", OtherKey="IdClient")]
 		public EntitySet<Factura> Facturas
 		{
@@ -1377,6 +1393,18 @@ namespace MagazinJocuriVideo.Models.DBObjects
 			}
 		}
 		
+		private void attach_CosCumparaturis(CosCumparaturi entity)
+		{
+			this.SendPropertyChanging();
+			entity.Clienti = this;
+		}
+		
+		private void detach_CosCumparaturis(CosCumparaturi entity)
+		{
+			this.SendPropertyChanging();
+			entity.Clienti = null;
+		}
+		
 		private void attach_Facturas(Factura entity)
 		{
 			this.SendPropertyChanging();
@@ -1406,7 +1434,11 @@ namespace MagazinJocuriVideo.Models.DBObjects
 		
 		private decimal _Pret;
 		
+		private System.Guid _IdClient;
+		
 		private EntitySet<Factura> _Facturas;
+		
+		private EntityRef<Clienti> _Clienti;
 		
 		private EntityRef<Produse> _Produse;
 		
@@ -1424,11 +1456,14 @@ namespace MagazinJocuriVideo.Models.DBObjects
     partial void OnCantitateChanged();
     partial void OnPretChanging(decimal value);
     partial void OnPretChanged();
+    partial void OnIdClientChanging(System.Guid value);
+    partial void OnIdClientChanged();
     #endregion
 		
 		public CosCumparaturi()
 		{
 			this._Facturas = new EntitySet<Factura>(new Action<Factura>(this.attach_Facturas), new Action<Factura>(this.detach_Facturas));
+			this._Clienti = default(EntityRef<Clienti>);
 			this._Produse = default(EntityRef<Produse>);
 			OnCreated();
 		}
@@ -1537,6 +1572,30 @@ namespace MagazinJocuriVideo.Models.DBObjects
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdClient", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid IdClient
+		{
+			get
+			{
+				return this._IdClient;
+			}
+			set
+			{
+				if ((this._IdClient != value))
+				{
+					if (this._Clienti.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnIdClientChanging(value);
+					this.SendPropertyChanging();
+					this._IdClient = value;
+					this.SendPropertyChanged("IdClient");
+					this.OnIdClientChanged();
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="CosCumparaturi_Factura", Storage="_Facturas", ThisKey="IdCos", OtherKey="IdCos")]
 		public EntitySet<Factura> Facturas
 		{
@@ -1547,6 +1606,40 @@ namespace MagazinJocuriVideo.Models.DBObjects
 			set
 			{
 				this._Facturas.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Clienti_CosCumparaturi", Storage="_Clienti", ThisKey="IdClient", OtherKey="IdClient", IsForeignKey=true)]
+		public Clienti Clienti
+		{
+			get
+			{
+				return this._Clienti.Entity;
+			}
+			set
+			{
+				Clienti previousValue = this._Clienti.Entity;
+				if (((previousValue != value) 
+							|| (this._Clienti.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Clienti.Entity = null;
+						previousValue.CosCumparaturis.Remove(this);
+					}
+					this._Clienti.Entity = value;
+					if ((value != null))
+					{
+						value.CosCumparaturis.Add(this);
+						this._IdClient = value.IdClient;
+					}
+					else
+					{
+						this._IdClient = default(System.Guid);
+					}
+					this.SendPropertyChanged("Clienti");
+				}
 			}
 		}
 		

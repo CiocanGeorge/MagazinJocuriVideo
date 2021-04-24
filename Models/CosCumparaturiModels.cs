@@ -22,6 +22,8 @@ namespace MagazinJocuriVideo.Models
         [Required(ErrorMessage = "Obligatoriu")]
         public decimal Pret { get; set; }
 
+        [Required(ErrorMessage = "Obligatoriu")]
+        public Guid ClientId { get; set; }
 
     }
 }

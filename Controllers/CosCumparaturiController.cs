@@ -9,17 +9,18 @@ using System.Web.Mvc;
 
 namespace MagazinJocuriVideo.Controllers
 {
-   
+   [Authorize]
     public class CosCumparaturiController : Controller
     {
         private CosCumparaturiRepository cosCumparaturiRepository = new CosCumparaturiRepository();
         private FacturaRepository facturaRepository = new FacturaRepository();
         private ProdusRepository produsRepository = new ProdusRepository();
+        private ClientRepository clientRepository = new ClientRepository();
         // GET: CosCumparaturi
         public ActionResult Index()
         {            
             List<CosVizualizare> cosVizualizare = new List<CosVizualizare>();
-            List<CosCumparaturiModels> cos = cosCumparaturiRepository.GetAllCos();
+            List<CosCumparaturiModels> cos = cosCumparaturiRepository.GetAllCosByUser(clientRepository.GetClientByEmail(User.Identity.Name));
             foreach (CosCumparaturiModels cc in cos)
             {
                 CosVizualizare obiect = new CosVizualizare();
@@ -58,7 +59,7 @@ namespace MagazinJocuriVideo.Controllers
                 cosCumparaturiModels.CodProdusId = id;
                 cosCumparaturiModels.IdComanda=facturaRepository.UltimaFactura();
                 cosCumparaturiModels.Pret = cosCumparaturiModels.Cantitate * produs.Pret;
-                Console.WriteLine(cosCumparaturiModels.IdComanda);
+                cosCumparaturiModels.ClientId = clientRepository.GetClientByEmail(User.Identity.Name);
 
                 cosCumparaturiRepository.InserareCosCumparaturi(cosCumparaturiModels);
 

@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace MagazinJocuriVideo.Controllers
 {
+    [Authorize]
     public class FacturaController : Controller
     {
         private CosCumparaturiRepository cosCumparaturiRepository = new CosCumparaturiRepository();
@@ -45,7 +46,6 @@ namespace MagazinJocuriVideo.Controllers
 
             return View("DetailsFactura", detaliiFactura);
         }
-
         // GET: Factura/Create
         public ActionResult Create()
         {
@@ -70,13 +70,11 @@ namespace MagazinJocuriVideo.Controllers
                 facturaModels.IdFactura = cosCumparaturiRepository.Ultimacomanda();
                 facturaModels.IdCos = cosCumparaturiRepository.IdCos();
                 facturaModels.IdClient = clientRepository.GetClientByEmail(User.Identity.Name);
-                if(facturaModels.IdClient==null)
-
                 facturaModels.Data = DateTime.UtcNow;
                 var totalPlata = cosCumparaturiRepository.TotalPlata();
                 totalPlata = totalPlata + totalPlata * (decimal)0.19;
                 facturaModels.TotalPlata = totalPlata;
-                    return RedirectToAction("Register","Account");
+                    
                 facturaRepository.InserareFactura(facturaModels);
 
                 return RedirectToAction("Index");
@@ -86,14 +84,14 @@ namespace MagazinJocuriVideo.Controllers
                 return View();
             }
         }
-
+        [Authorize(Roles = "Admin")]
         // GET: Factura/Edit/5
         public ActionResult Edit(int id)
         {
             FacturaModels factura = facturaRepository.GetFacturaById(id);
             return View("EditFactura",factura);
         }
-
+        [Authorize(Roles = "Admin")]
         // POST: Factura/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
@@ -120,14 +118,14 @@ namespace MagazinJocuriVideo.Controllers
                 return View("EditFactura");
             }
         }
-
+        [Authorize(Roles = "Admin")]
         // GET: Factura/Delete/5
         public ActionResult Delete(int id)
         {
             FacturaModels facuta = facturaRepository.GetFacturaById(id);
             return View("DeleteFactura",facuta);
         }
-
+        [Authorize(Roles = "Admin")]
         // POST: Factura/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)

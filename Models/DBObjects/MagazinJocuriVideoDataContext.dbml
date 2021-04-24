@@ -59,6 +59,7 @@
       <Column Name="Telefon" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
       <Column Name="Email" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
       <Column Name="Adresa" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Association Name="Clienti_CosCumparaturi" Member="CosCumparaturis" ThisKey="IdClient" OtherKey="IdClient" Type="CosCumparaturi" />
       <Association Name="Clienti_Factura" Member="Facturas" ThisKey="IdClient" OtherKey="IdClient" Type="Factura" />
     </Type>
   </Table>
@@ -69,7 +70,9 @@
       <Column Name="CodProdusId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Cantitate" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Pret" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="IdClient" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
       <Association Name="CosCumparaturi_Factura" Member="Facturas" ThisKey="IdCos" OtherKey="IdCos" Type="Factura" />
+      <Association Name="Clienti_CosCumparaturi" Member="Clienti" ThisKey="IdClient" OtherKey="IdClient" Type="Clienti" IsForeignKey="true" />
       <Association Name="Produse_CosCumparaturi" Member="Produse" ThisKey="CodProdusId" OtherKey="CodProdusId" Type="Produse" IsForeignKey="true" />
     </Type>
   </Table>
