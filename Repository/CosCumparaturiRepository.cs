@@ -49,7 +49,7 @@ namespace MagazinJocuriVideo.Repository
         }
         public CosCumparaturiModels GetCos(int id,Guid idClient)
         {
-            return MapDbObjectToModel(dbContext.CosCumparaturis.FirstOrDefault(x => x.CodProdusId == id && x.IdClient==idClient));
+            return MapDbObjectToModel(dbContext.CosCumparaturis.FirstOrDefault(x => x.CodProdusId == id && x.IdClient==idClient && x.IdComanda==facturaRepository.UltimaFactura()));
         }
         public int GetCodProdusId(int id,Guid idClient)
         {
@@ -62,14 +62,14 @@ namespace MagazinJocuriVideo.Repository
         public bool ExistaProdus(int id,Guid idClient)
         {
             ProdusModels produs = produsRepository.GetProdusById(id);
-            CosCumparaturi cos = dbContext.CosCumparaturis.FirstOrDefault(x => x.CodProdusId == id && x.IdClient == idClient);
+            CosCumparaturi cos = dbContext.CosCumparaturis.FirstOrDefault(x => x.CodProdusId == id && x.IdClient == idClient && x.IdComanda==facturaRepository.UltimaFactura());
             if (cos == null)
                 return false;
             return true;
         }
         public int GetCantitate(int id, Guid idClient)
         {
-            return dbContext.CosCumparaturis.FirstOrDefault(x => x.CodProdusId == id && x.IdClient == idClient).Cantitate;
+            return dbContext.CosCumparaturis.OrderByDescending(x => x.CodProdusId == id && x.IdClient == idClient && x.IdComanda == facturaRepository.UltimaFactura()).FirstOrDefault().Cantitate;
         }
        public void DeleteProdusDinCos(int id)
         {

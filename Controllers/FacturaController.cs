@@ -81,7 +81,7 @@ namespace MagazinJocuriVideo.Controllers
             }
             catch
             {
-                return View();
+                return View("CreateFactura");
             }
         }
         [Authorize(Roles = "Admin")]

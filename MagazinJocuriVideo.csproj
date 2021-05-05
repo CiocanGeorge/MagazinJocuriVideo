@@ -212,6 +212,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Poze\background.jpg" />
     <Content Include="Poze\csgo.png" />
     <Content Include="Poze\hs.jpg" />
     <Content Include="Poze\theForest.jpg" />
